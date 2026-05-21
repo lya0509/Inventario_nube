@@ -1,6 +1,7 @@
 import flet as ft
 from supabase import create_client, Client
 import requests 
+import os # <--- Agrega esta línea
 
 #conexion bd
 SUPABASE_URL = "https://cvqwxjsxstwkewoqqpfd.supabase.co"
@@ -358,4 +359,5 @@ def main(page: ft.Page):
     # Y luego mandamos a buscar las divisas en tiempo real
     obtener_divisas()
 
-ft.app(target=main)
+puerto = int(os.environ.get("PORT", 8080))
+ft.app(target=main, view=ft.AppView.WEB_BROWSER, host="0.0.0.0", port=puerto)
